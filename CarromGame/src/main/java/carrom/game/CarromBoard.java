@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import carrom.game.utils.Player;
+import static carrom.game.utils.CarromGameConstants.*;
 
 public class CarromBoard {
 	 private Player player1;
@@ -66,32 +67,32 @@ public class CarromBoard {
 		 case 1 : 
 			 player.setScore(1); //simple strike
 			 black--;
-			 player.setMove("Strike");
+			 player.setMove(STRIKE);
 			 break;
 		 case 2 : 
 			 player.setScore(2); //multi strike
 			 black -= 2;
-			 player.setMove("Multistrike");
+			 player.setMove(MULTISTRIKE);
 			 break;
 		 case 3 : 
 			 player.setScore(3); //red strike
 			 red--;
-			 player.setMove("Red strike");
+			 player.setMove(RED_STRIKE);
 			 break;
 		 case 4 : 
 			 player.setScore(-1); //striker
-			 player.setMove("Striker strike");
+			 player.setMove(STRIKER_STRIKE);
 			 if(checkThreeFoul(player))player.setScore(-1);
 			 break;
 		 case 5 : 
 			 player.setScore(-2); //foul strike
 			 black--;
-			 player.setMove("Defunct coin");
+			 player.setMove(DEFUNCT_COIN);
 			 if(checkThreeFoul(player))player.setScore(-1);
 			 break;
 		 case 6 : 
 			 player.setScore(0); //null strike
-			 player.setMove("None");
+			 player.setMove(NONE);
 			 break;
 		 default :
 			 player.setScore(0);
@@ -130,8 +131,8 @@ public class CarromBoard {
 		 int cnt = 0;
 		 
 		 for(int i = histMoves.size()-1 ; i>=0 && i>histMoves.size()-4 ; i--) {
-			 if(histMoves.get(i).equals("Striker strike") || 
-					 histMoves.get(i).equals("Defunct coin"))cnt++;
+			 if(histMoves.get(i).equals(STRIKER_STRIKE) || 
+					 histMoves.get(i).equals(DEFUNCT_COIN))cnt++;
 			
 		 }
 		 if(cnt>2)return true;
